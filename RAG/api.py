@@ -13,6 +13,7 @@ print("done")
 
 # Initialize the LLM
 app.cache["api"] = replicate.Client(api_token="r8_K5dHtj5QxO1EIyJjryMvOps4n8nwHWi44mQqT")
+# app.cache["api"] = replicate.Client(api_token="r8_6uQFql5o5JkXye5itXTOcWlMxHKDo6N3Wy8E4")
 
 
 @app.route("/")
@@ -49,6 +50,7 @@ def rag_pipeline():
         output_str = "".join(output)
     except Exception as e:
         output_str = f"Output Generation has reached $1,000,000. No more output can be generated. Please try again later."
+        return {"error": output_str}, 500
     print("THE QUERY IS")
     print(query)
     print(output_str)
